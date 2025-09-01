@@ -155,3 +155,18 @@ img,svg,video,figure,.media img,.card img{max-width:100%;height:auto}
   }
 }
 
+/* 🔽 Ajuste específico para el logo en el header */
+.header .brand__logo {
+  max-height: 80px !important; /* tamaño en laptop/desktop */
+  width: auto !important;
+  height: auto !important;
+}
+
+/* En móvil lo reducimos */
+@media (max-width: 768px) {
+  .header .brand__logo {
+    max-height: 48px !important;
+  }
+}
+
+
