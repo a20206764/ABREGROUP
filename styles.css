@@ -22,7 +22,6 @@ a:hover{text-decoration:underline}
 .header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:50}
 .header__wrap{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;gap:1rem}
 .brand{display:flex;align-items:center;gap:.6rem;color:var(--text)}
-.brand__logo{border-radius:8px;object-fit:cover}
 .nav{display:flex;gap:.8rem;align-items:center}
 .nav a{padding:.5rem .7rem;border-radius:10px}
 .nav a:hover{background:var(--ghost);text-decoration:none}
@@ -83,7 +82,7 @@ input,textarea,select{border:1px solid var(--border);padding:.7rem .8rem;border-
 .footer{background:#4CAF50;color:#fff}
 .footer__wrap{display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:1rem 0;flex-wrap:wrap}
 .footnav{display:flex;gap:.8rem;flex-wrap:wrap}
-.footer a{color:#fff;opacity:1}          /* enlaces del footer en blanco sólido */
+.footer a{color:#fff;opacity:1}
 .socials{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
 .ic{display:inline-flex;align-items:center;justify-content:center;padding:.5rem .6rem;border-radius:10px;border:1px solid var(--border);background:#fff;color:#0f6a54}
 .skip-link{position:absolute;left:-9999px}
@@ -96,8 +95,8 @@ main{flex:1}
 .footer{position:static}
 
 /* ===== Responsive / anti-desborde ===== */
-html,body{overflow-x:hidden}                     /* sin scroll horizontal */
-.grid > *, .header__wrap > *, .footer__wrap > *{min-width:0} /* hijos de flex/grid pueden encoger */
+html,body{overflow-x:hidden}
+.grid > *, .header__wrap > *, .footer__wrap > *{min-width:0}
 p,li,h1,h2,h3,h4,h5,h6{overflow-wrap:anywhere;word-break:break-word}
 img,svg,video,figure,.media img,.card img{max-width:100%;height:auto}
 .container{width:min(1120px,100%);padding-left:16px;padding-right:16px}
@@ -129,48 +128,16 @@ img,svg,video,figure,.media img,.card img{max-width:100%;height:auto}
   .brand-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
-/* 🔽 Ajuste de tamaño del logo ABREGROUP */
-.brand__logo {
-  height: 32px;   /* tamaño por defecto en móviles */
-  width: auto;
-}
-
-/* En pantallas de laptop/desktop lo agrandamos */
-@media (min-width: 1024px) {
-  .brand__logo {
-    height: 60px;   /* puedes probar con 56px, 60px o 64px */
-    width: auto;
-  }
-}
-/* 🔽 Corrección definitiva del tamaño del logo */
-.brand__logo {
-  height: 36px;   /* tamaño base (móvil) */
-  width: auto;
-  max-height: 100%;
-  display: block;
-}
-
-/* En laptop/desktop agrandamos el logo */
-@media (min-width: 1024px) {
-  .brand__logo {
-    height: 72px;   /* ajusta entre 64px y 80px si lo quieres más grande */
-  }
-}
-
-/* 🔽 Ajuste logo header */
+/* ===== Fix definitivo logo header ===== */
 .brand__logo {
   height: auto;
   width: auto;
   max-height: 64px;   /* tamaño en desktop/laptop */
+  display: block;
 }
 
 @media (max-width: 768px) {
   .brand__logo {
-    max-height: 40px;  /* tamaño reducido en celular */
+    max-height: 40px; /* tamaño reducido en celular */
   }
 }
-
-
-
-
-
