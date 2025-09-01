@@ -129,15 +129,20 @@ img,svg,video,figure,.media img,.card img{max-width:100%;height:auto}
   .brand-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
-/* Logo más grande en laptop/desktop */
-.brand__logo{
-  height: 18px;            /* tamaño base (móvil) */
+/* 🔽 Ajuste de tamaño del logo ABREGROUP */
+.brand__logo {
+  height: 32px;   /* tamaño por defecto en móviles */
+  width: auto;
 }
 
-@media (min-width: 1024px){
-  .brand__logo{ height: 58px; }   /* ajusta 40–52px a gusto */
-  .brand{ gap: .8rem; }           /* un poco más de aire al texto */
+/* En pantallas de laptop/desktop lo agrandamos */
+@media (min-width: 1024px) {
+  .brand__logo {
+    height: 60px;   /* puedes probar con 56px, 60px o 64px */
+    width: auto;
+  }
 }
+
 
 
 
