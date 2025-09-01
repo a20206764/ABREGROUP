@@ -57,5 +57,10 @@ img, svg, video, figure, .media img, .card img { max-width: 100%; height: auto; 
   .categories { grid-template-columns: 1fr 1fr; }
 }
 .card, .section, .media, .grid { max-width: 100%; overflow: hidden; }
+/* Sticky footer global */
+html, body{height:100%}
+body{display:flex;flex-direction:column;min-height:100vh}
+main{flex:1}
+
 
 
