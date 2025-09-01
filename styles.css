@@ -142,6 +142,21 @@ img,svg,video,figure,.media img,.card img{max-width:100%;height:auto}
     width: auto;
   }
 }
+/* 🔽 Corrección definitiva del tamaño del logo */
+.brand__logo {
+  height: 36px;   /* tamaño base (móvil) */
+  width: auto;
+  max-height: 100%;
+  display: block;
+}
+
+/* En laptop/desktop agrandamos el logo */
+@media (min-width: 1024px) {
+  .brand__logo {
+    height: 72px;   /* ajusta entre 64px y 80px si lo quieres más grande */
+  }
+}
+
 
 
 
