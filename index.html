@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="assets/logo-ayb.jpg" />
+  <link rel="icon" href="assets/logo-ayb.jpeg" />
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -28,16 +28,10 @@
   <header class="header">
     <div class="container header__wrap">
       <a class="brand" href="index.html" aria-label="Inicio">
-        <!-- logo header: intenta .jpg y cae a .jpeg -->
-        <picture>
-          <source srcset="assets/abregroup-hero.jpg">
-          <img src="assets/abregroup-hero.jpeg" alt="ABREGROUP" width="40" height="40" class="brand__logo">
-        </picture>
+        <img src="assets/abregroup-hero.jpeg" alt="ABREGROUP" width="40" height="40" class="brand__logo">
         <span>ABREGROUP</span>
       </a>
-
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">☰</button>
-
       <nav id="nav" class="nav" aria-label="Principal">
         <a href="#proposito">Propósito</a>
         <a href="products.html">Productos</a>
@@ -49,12 +43,9 @@
     </div>
   </header>
 
-  <!-- Hero con fallback jpg/jpeg -->
+  <!-- Hero -->
   <section class="hero" aria-label="Portada">
-    <picture>
-      <source srcset="assets/abregroup-hero.jpg">
-      <img class="hero__img" src="assets/abregroup-hero.jpeg" alt="ABREGROUP">
-    </picture>
+    <img class="hero__img" src="assets/abregroup-hero.jpeg" alt="ABREGROUP">
     <div class="container hero__content">
       <h1>Calidad para cada mesa y cada lavado</h1>
       <p>Alimentos AYB y limpieza Estelar con buen precio, buen sabor y buen cuidado.</p>
@@ -70,10 +61,7 @@
     <section id="proposito" class="section section--tight">
       <div class="container grid grid-2">
         <figure class="media card">
-          <picture>
-            <source srcset="assets/logo-estelar.jpg">
-            <img src="assets/logo-estelar.jpeg" alt="Estelar & AYB" style="max-width:280px; border-radius:10px;">
-          </picture>
+          <img src="assets/logo-estelar.jpeg" alt="Estelar & AYB" style="max-width:280px; border-radius:10px;">
         </figure>
 
         <div class="card">
@@ -99,19 +87,13 @@
         <h2>Nuestras marcas</h2>
         <div class="brand-cards">
           <article class="brand-card">
-            <picture>
-              <source srcset="assets/logo-ayb.jpg">
-              <img src="assets/logo-ayb.jpeg" alt="AYB" width="96" height="96" loading="lazy">
-            </picture>
+            <img src="assets/logo-ayb.jpeg" alt="AYB" width="96" height="96" loading="lazy">
             <h3>AYB</h3>
             <p>Alimentos de confianza: aceites, conservas, pastas y dulces.</p>
             <a class="brand-card__link" href="products.html?marca=AYB">Ver productos</a>
           </article>
           <article class="brand-card">
-            <picture>
-              <source srcset="assets/logo-estelar.jpg">
-              <img src="assets/logo-estelar.jpeg" alt="Estelar" width="96" height="96" loading="lazy">
-            </picture>
+            <img src="assets/logo-estelar.jpeg" alt="Estelar" width="96" height="96" loading="lazy">
             <h3>Estelar</h3>
             <p>Limpieza eficiente y práctica: jabones y detergentes.</p>
             <a class="brand-card__link" href="products.html?marca=Estelar">Ver productos</a>
@@ -120,45 +102,25 @@
       </div>
     </section>
 
-    <!-- Categorías con fallback -->
+    <!-- Categorías -->
     <section id="categorias" class="section">
       <div class="container">
         <h2>Explora por categoría</h2>
         <div class="categories">
           <a class="category" href="products.html?cat=aceites">
-            <picture>
-              <source srcset="assets/cat-aceites.jpg">
-              <img src="assets/cat-aceites.jpeg" alt="Aceites AYB" width="48" height="48">
-            </picture>
-            <span>Aceites</span>
+            <img src="assets/cat-aceites.jpeg" alt="Aceites AYB" width="48" height="48"><span>Aceites</span>
           </a>
           <a class="category" href="products.html?cat=conservas">
-            <picture>
-              <source srcset="assets/cat-conservas.jpg">
-              <img src="assets/cat-conservas.jpeg" alt="Conservas AYB" width="48" height="48">
-            </picture>
-            <span>Conservas</span>
+            <img src="assets/cat-conservas.jpeg" alt="Conservas AYB" width="48" height="48"><span>Conservas</span>
           </a>
           <a class="category" href="products.html?cat=pastas">
-            <picture>
-              <source srcset="assets/cat-pastas.jpg">
-              <img src="assets/cat-pastas.jpeg" alt="Pastas AYB" width="48" height="48">
-            </picture>
-            <span>Pastas</span>
+            <img src="assets/cat-pastas.jpeg" alt="Pastas AYB" width="48" height="48"><span>Pastas</span>
           </a>
           <a class="category" href="products.html?cat=dulces">
-            <picture>
-              <source srcset="assets/cat-pastas.jpg">
-              <img src="assets/cat-pastas.jpeg" alt="Dulces AYB" width="48" height="48">
-            </picture>
-            <span>Dulces</span>
+            <img src="assets/cat-pastas.jpeg" alt="Dulces AYB" width="48" height="48"><span>Dulces</span>
           </a>
           <a class="category" href="products.html?cat=limpieza">
-            <picture>
-              <source srcset="assets/logo-estelar.jpg">
-              <img src="assets/logo-estelar.jpeg" alt="Limpieza Estelar" width="48" height="48">
-            </picture>
-            <span>Limpieza</span>
+            <img src="assets/logo-estelar.jpeg" alt="Limpieza Estelar" width="48" height="48"><span>Limpieza</span>
           </a>
         </div>
       </div>
@@ -219,10 +181,7 @@
   <footer class="footer">
     <div class="container footer__wrap">
       <div class="footer__brand">
-        <picture>
-          <source srcset="assets/abregroup-hero.jpg">
-          <img src="assets/abregroup-hero.jpeg" alt="" width="32" height="32" aria-hidden="true" class="brand__logo">
-        </picture>
+        <img src="assets/abregroup-hero.jpeg" alt="" width="32" height="32" aria-hidden="true" class="brand__logo">
         <span>ABREGROUP</span>
       </div>
       <nav aria-label="Enlaces de pie de página" class="footnav">
