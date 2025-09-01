@@ -141,3 +141,17 @@ img,svg,video,figure,.media img,.card img{max-width:100%;height:auto}
     max-height: 40px; /* tamaño reducido en celular */
   }
 }
+/* 🔽 Ajuste forzado del logo ABREGROUP */
+.header .brand__logo {
+  height: auto;
+  width: auto;
+  max-height: 80px;   /* tamaño en desktop/laptop */
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .header .brand__logo {
+    max-height: 40px; /* tamaño reducido en celular */
+  }
+}
+
