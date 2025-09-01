@@ -37,13 +37,12 @@ async function renderBrandsPage(){
     // listado tipo "Nuestras marcas"
     root.innerHTML = `
       <h1>Nuestras marcas</h1>
-      <div class="grid grid-3">
+      <div class="grid brand-cards">
         ${brands.map(b=>`
-          <article class="card">
-            <img src="${b.logo}" alt="${b.name}" style="width:110px;border-radius:12px">
-            <h3>${b.name}</h3>
-            <p>${b.summary}</p>
-            <a class="btn" href="marcas.html?brand=${encodeURIComponent(b.key)}">Ver ${b.name}</a>
+          <article class="card brand-card">
+            <img class="brand-card__logo" src="${b.logo}" alt="${b.name}">
+            <p class="brand-card__summary">${b.summary}</p>
+            <a class="btn" href="marcas.html?brand=${encodeURIComponent(b.key)}">Ver marca</a>
           </article>
         `).join('')}
       </div>`;
@@ -157,3 +156,4 @@ async function renderProductDetail(){
 if (onBrands) renderBrandsPage();
 if (onProducts) renderProducts();
 if (onProduct) renderProductDetail();
+
