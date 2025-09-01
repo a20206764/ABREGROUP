@@ -128,3 +128,13 @@ img,svg,video,figure,.media img,.card img{max-width:100%;height:auto}
 @media(min-width:900px){
   .brand-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+/* Logo más grande en laptop/desktop */
+.brand__logo{
+  height: 28px;            /* tamaño base (móvil) */
+}
+
+@media (min-width: 1024px){
+  .brand__logo{ height: 44px; }   /* ajusta 40–52px a gusto */
+  .brand{ gap: .8rem; }           /* un poco más de aire al texto */
+}
