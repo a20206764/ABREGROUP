@@ -1,88 +1,159 @@
-// Toggle móvil
-const navToggle = document.querySelector('.nav-toggle');
-const nav = document.getElementById('nav');
-if (navToggle && nav) {
-  navToggle.addEventListener('click', () => {
-    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-    navToggle.setAttribute('aria-expanded', String(!expanded));
-    nav.classList.toggle('open');
-  });
-}
+// util
+const $ = (s, root=document) => root.querySelector(s);
+const $$ = (s, root=document) => [...root.querySelectorAll(s)];
 
-// Año en footer
 document.querySelectorAll('#y').forEach(el => el.textContent = new Date().getFullYear());
 
-// KPI counters
-document.querySelectorAll('.kpi__num').forEach(el => {
-  const target = Number(el.dataset.count || 100);
-  let val = 0;
-  const step = () => {
-    val += Math.ceil((target - val) / 10);
-    el.textContent = val + '%';
-    if (val < target) requestAnimationFrame(step);
-  };
+// nav móvil
+const navToggle = $('.nav-toggle'), nav = $('#nav');
+if (navToggle && nav) navToggle.onclick = () => { 
+  const exp = navToggle.getAttribute('aria-expanded') === 'true';
+  navToggle.setAttribute('aria-expanded', String(!exp));
+  nav.classList.toggle('open');
+};
+
+// KPIs animados
+$$('.kpi__num').forEach(el=>{
+  const t = Number(el.dataset.count||100); let v=0;
+  const step=()=>{ v += Math.ceil((t-v)/10); el.textContent = v+'%'; if(v<t) requestAnimationFrame(step) };
   step();
 });
 
-// Catálogo base (AYB en mayúsculas donde corresponde)
-const PRODUCTS = [
-  { id:1, name:'Aceite de Soya 1L', brand:'AYB', cat:'aceites', price:9.90, unit:'/botella', sku:'AYB-ACE-1L' },
-  { id:2, name:'Caballa en aceite 170g', brand:'AYB', cat:'conservas', price:6.50, unit:'/lata', sku:'AYB-CON-170' },
-  { id:3, name:'Spaguetti 500g', brand:'AYB', cat:'pastas', price:3.60, unit:'/bolsa', sku:'AYB-PAS-500' },
-  { id:4, name:'Jabón en barra 175g', brand:'Estelar', cat:'limpieza', price:1.20, unit:'/unidad', sku:'EST-LIM-175' }
-];
+// Decide qué pantalla estamos:
+const onBrands = location.pathname.endsWith('marcas.html');
+const onProducts = location.pathname.endsWith('products.html');
+const onProduct = location.pathname.endsWith('product.html');
 
-// Render de tarjetas
-function renderProducts(list) {
-  const grid = document.getElementById('grid');
-  if (!grid) return;
-  if (!list.length) {
-    grid.innerHTML = `<div class="card">No encontramos productos con los filtros seleccionados.</div>`;
-    return;
+// ======= MARCAS =======
+async function renderBrandsPage(){
+  const root = $('#brands-root');
+  if (!root) return;
+  const res = await fetch('brands.json'); const brands = await res.json();
+
+  const url = new URL(location.href);
+  const key = url.searchParams.get('brand');
+
+  if (!key) {
+    // listado tipo "Nuestras marcas"
+    root.innerHTML = `
+      <h1>Nuestras marcas</h1>
+      <div class="grid grid-3">
+        ${brands.map(b=>`
+          <article class="card">
+            <img src="${b.logo}" alt="${b.name}" style="width:110px;border-radius:12px">
+            <h3>${b.name}</h3>
+            <p>${b.summary}</p>
+            <a class="btn" href="marcas.html?brand=${encodeURIComponent(b.key)}">Ver ${b.name}</a>
+          </article>
+        `).join('')}
+      </div>`;
+  } else {
+    // vista interna de marca (hero + familias)
+    const b = brands.find(x=>x.key===key) || brands[0];
+    root.innerHTML = `
+      <section class="hero" style="min-height:260px">
+        <img class="hero__img" src="${b.hero}" alt="">
+        <div class="container hero__content">
+          <img src="${b.logo}" alt="${b.name}" style="width:120px;margin:0 auto 8px;border-radius:14px">
+          <h1>${b.name}</h1>
+          <p>${b.summary}</p>
+          <div class="hero__ctas">
+            <a class="btn" href="products.html?marca=${encodeURIComponent(b.key)}">Ver productos</a>
+            <a class="btn btn--ghost" href="marcas.html">Todas las marcas</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <h2>Familias de ${b.name}</h2>
+          <div class="grid grid-3">
+            ${b.families.map(f=>`
+              <a class="card" href="${f.href}">
+                <img src="${f.image}" alt="${f.name}" style="border-radius:12px">
+                <h3>${f.name}</h3>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      </section>
+    `;
   }
-  grid.innerHTML = list.map(p => `
-    <article class="card">
-      <div class="product__media" aria-hidden="true">${p.cat.toUpperCase()}</div>
-      <div class="product__brand">${p.brand} · <small>${p.sku}</small></div>
-      <h3>${p.name}</h3>
-      <div class="price">S/ ${p.price.toFixed(2)} <small>${p.unit}</small></div>
-      <button class="btn" type="button" aria-label="Agregar ${p.name}">Añadir</button>
-    </article>
-  `).join('');
 }
 
-// Filtros en products.html
-function initFilters() {
-  const selCat = document.getElementById('filter-category');
-  const selBrand = document.getElementById('filter-brand');
-  const inputSearch = document.getElementById('filter-search');
-  if (!(selCat && selBrand && inputSearch)) return;
+// ======= PRODUCTOS (listado) =======
+async function renderProducts(){
+  const grid = $('#grid'); if(!grid) return;
+  const res = await fetch('products.json'); const products = await res.json();
 
-  const url = new URL(window.location.href);
+  // prellenar filtros por query
+  const url = new URL(location.href);
   const qCat = url.searchParams.get('cat') || '';
   const qBrand = url.searchParams.get('marca') || '';
-  selCat.value = qCat;
-  selBrand.value = qBrand;
+  $('#filter-category').value = qCat;
+  $('#filter-brand').value = qBrand;
 
-  const run = () => {
-    const cat = selCat.value.trim().toLowerCase();
-    const brand = selBrand.value.trim();
-    const q = (inputSearch.value || '').trim().toLowerCase();
-    const list = PRODUCTS.filter(p =>
-      (!cat || p.cat === cat) &&
-      (!brand || p.brand === brand) &&
-      (!q || (p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q)))
+  const run = ()=>{
+    const cat = $('#filter-category').value;
+    const brand = $('#filter-brand').value;
+    const q = ($('#filter-search').value||'').toLowerCase();
+    const list = products.filter(p =>
+      (!cat || p.cat===cat) &&
+      (!brand || p.brand===brand) &&
+      (!q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q))
     );
-    renderProducts(list);
+    grid.innerHTML = list.length ? list.map(p=>`
+      <article class="card">
+        <div class="product__media"><img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:12px"></div>
+        <div class="product__brand">${p.brand} · <small>${p.sku}</small></div>
+        <h3>${p.name}</h3>
+        <div class="price">S/ ${p.price.toFixed(2)} <small>${p.unit}</small></div>
+        <a class="btn" href="product.html?id=${p.id}">Ver detalle</a>
+      </article>
+    `).join('') : `<div class="card">No encontramos productos con los filtros seleccionados.</div>`;
   };
 
-  selCat.addEventListener('change', run);
-  selBrand.addEventListener('change', run);
-  inputSearch.addEventListener('input', run);
-  run(); // primera carga
+  $('#filter-category').onchange = run;
+  $('#filter-brand').onchange = run;
+  $('#filter-search').oninput = run;
+  run();
 }
 
-// Auto-inicializa si existe #grid
-if (document.getElementById('grid')) {
-  initFilters();
+// ======= PRODUCTO (detalle) =======
+async function renderProductDetail(){
+  const root = $('#pd-root'); if(!root) return;
+  const res = await fetch('products.json'); const products = await res.json();
+  const id = Number(new URL(location.href).searchParams.get('id') || 0);
+  const p = products.find(x=>x.id===id) || products[0];
+
+  root.innerHTML = `
+    <div class="card">
+      <img src="${p.img}" alt="${p.name}" style="border-radius:12px">
+    </div>
+    <div class="card">
+      <h1>${p.name}</h1>
+      <p class="product__brand">${p.brand} · ${p.sku}</p>
+      <p>${p.desc}</p>
+      <div class="price" style="font-size:1.4rem">S/ ${p.price.toFixed(2)} <small>${p.unit}</small></div>
+      <div style="display:flex;gap:.6rem;margin-top:1rem">
+        <a class="btn" href="https://wa.me/51976633755?text=Quiero%20${encodeURIComponent(p.name)}">Cotizar por WhatsApp</a>
+        <a class="btn btn--ghost" href="products.html?cat=${p.cat}&marca=${p.brand}">Volver al listado</a>
+      </div>
+    </div>
+  `;
+
+  $('#pd-specs').innerHTML = `
+    <h3>Especificaciones</h3>
+    <ul class="bullets">
+      <li>Categoría: ${p.cat}</li>
+      <li>Marca: ${p.brand}</li>
+      <li>Código/SKU: ${p.sku}</li>
+      <li>Presentación: ${p.unit.replace('/','')}</li>
+    </ul>
+  `;
 }
+
+// init por página
+if (onBrands) renderBrandsPage();
+if (onProducts) renderProducts();
+if (onProduct) renderProductDetail();
