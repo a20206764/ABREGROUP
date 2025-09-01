@@ -1,0 +1,26 @@
+[
+  {
+    "key": "AYB",
+    "name": "AYB",
+    "logo": "assets/logo-ayb.jpeg",
+    "hero": "assets/cat-aceites.jpeg",
+    "summary": "Marca de alimentos: aceites, conservas, pastas y dulces.",
+    "pillars": ["Sabor", "Calidad", "Precio justo"],
+    "families": [
+      {"name":"Aceites","image":"assets/cat-aceites.jpeg","href":"products.html?cat=aceites&marca=AYB"},
+      {"name":"Conservas","image":"assets/cat-conservas.jpeg","href":"products.html?cat=conservas&marca=AYB"},
+      {"name":"Pastas","image":"assets/cat-pastas.jpeg","href":"products.html?cat=pastas&marca=AYB"}
+    ]
+  },
+  {
+    "key": "Estelar",
+    "name": "Estelar",
+    "logo": "assets/logo-estelar.jpeg",
+    "hero": "assets/logo-estelar.jpeg",
+    "summary": "Línea de limpieza práctica y eficiente.",
+    "pillars": ["Cuidado", "Rendimiento", "Ahorro"],
+    "families": [
+      {"name":"Limpieza","image":"assets/logo-estelar.jpeg","href":"products.html?cat=limpieza&marca=Estelar"}
+    ]
+  }
+]

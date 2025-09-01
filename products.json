@@ -1,0 +1,6 @@
+[
+  {"id":1,"name":"Aceite Vegetal 1L","brand":"AYB","cat":"aceites","price":9.9,"unit":"/botella","sku":"AYB-ACE-1L","img":"assets/cat-aceites.jpeg","desc":"Aceite vegetal AYB para cocinar con rico sabor."},
+  {"id":2,"name":"Caballa en aceite 170g","brand":"AYB","cat":"conservas","price":6.5,"unit":"/lata","sku":"AYB-CON-170","img":"assets/cat-conservas.jpeg","desc":"Filete de caballa en aceite vegetal."},
+  {"id":3,"name":"Spaguetti 500g","brand":"AYB","cat":"pastas","price":3.6,"unit":"/bolsa","sku":"AYB-PAS-500","img":"assets/cat-pastas.jpeg","desc":"Pasta larga de sémola."},
+  {"id":4,"name":"Jabón en barra 175g","brand":"Estelar","cat":"limpieza","price":1.2,"unit":"/unidad","sku":"EST-LIM-175","img":"assets/logo-estelar.jpeg","desc":"Jabón de uso diario Estelar."}
+]
