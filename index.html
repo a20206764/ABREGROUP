@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title> — Inicio</title>
+  <title>ABREGROUP — Inicio</title>
   <meta name="description" content="ABREGROUP: marcas AYB y Estelar. Catálogo de alimentos y limpieza para Perú.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
@@ -12,17 +12,19 @@
 <body>
   <a class="skip-link" href="#main">Saltar al contenido</a>
 
+  <!-- Topbar -->
   <div class="topbar">
     <div class="container">
       <span>Envíos a nivel nacional</span>
       <span class="topbar__right">
         <a href="tel:+5113543257">(01) 354 3257</a>
         <span aria-hidden="true">·</span>
-        <a href="index.html#contacto">Contáctanos</a>
+        <a href="#contacto">Contáctanos</a>
       </span>
     </div>
   </div>
 
+  <!-- Header -->
   <header class="header">
     <div class="container header__wrap">
       <a class="brand" href="index.html">
@@ -31,15 +33,16 @@
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav">☰</button>
       <nav id="nav" class="nav">
-        <a href="marcas.html">Nuestras Marcas</a>
-        <a href="products.html">Nuestros Productos</a>
-        <a href="#proposito">Nuestro Propósito</a>
+        <a href="marcas.html">Marcas</a>
+        <a href="products.html">Productos</a>
+        <a href="#proposito">Propósito</a>
         <a href="#contacto">Contacto</a>
         <a class="btn" href="products.html">Tienda</a>
       </nav>
     </div>
   </header>
 
+  <!-- Hero -->
   <section class="hero">
     <img class="hero__img" src="assets/abregroup-hero.jpeg" alt="">
     <div class="container hero__content">
@@ -52,47 +55,44 @@
     </div>
   </section>
 
- <main id="main">
-  <section class="section">
-    <div class="container">
-
-      <!-- 🔽 Sección de slogan -->
-      <section class="slogan">
-        <div class="container">
-          <h1 class="slogan__text">Lo bueno se comparte</h1>
-        </div>
-      </section>
-      <!-- 🔼 Fin slogan -->
-
-      <h2>Explora por categoría</h2>
-      <div class="categories">
-        <a class="category" href="products.html?cat=aceites">
-          <img src="assets/cat-aceites.jpeg" alt="Aceites" width="48" height="48">
-          <span>Aceites</span>
-        </a>
-        <a class="category" href="products.html?cat=conservas">
-          <img src="assets/cat-conservas.jpeg" alt="Conservas" width="48" height="48">
-          <span>Conservas</span>
-        </a>
-        <a class="category" href="products.html?cat=pastas">
-          <img src="assets/cat-pastas.jpeg" alt="Pastas" width="48" height="48">
-          <span>Pastas</span>
-        </a>
-        <a class="category" href="products.html?cat=dulces">
-          <img src="assets/cat-pastas.jpeg" alt="Dulces" width="48" height="48">
-          <span>Dulces</span>
-        </a>
-        <a class="category" href="products.html?cat=limpieza">
-          <img src="assets/logo-estelar.jpeg" alt="Limpieza" width="48" height="48">
-          <span>Limpieza</span>
-        </a>
+  <main id="main">
+    <!-- Slogan -->
+    <section class="slogan">
+      <div class="container">
+        <h1 class="slogan__text">Lo bueno se comparte</h1>
       </div>
+    </section>
 
-    </div>
-  </section>
-</main>
+    <!-- Categorías -->
+    <section class="section">
+      <div class="container">
+        <h2>Explora por categoría</h2>
+        <div class="categories">
+          <a class="category" href="products.html?cat=aceites">
+            <img src="assets/cat-aceites.jpeg" alt="Aceites" width="48" height="48">
+            <span>Aceites</span>
+          </a>
+          <a class="category" href="products.html?cat=conservas">
+            <img src="assets/cat-conservas.jpeg" alt="Conservas" width="48" height="48">
+            <span>Conservas</span>
+          </a>
+          <a class="category" href="products.html?cat=pastas">
+            <img src="assets/cat-pastas.jpeg" alt="Pastas" width="48" height="48">
+            <span>Pastas</span>
+          </a>
+          <a class="category" href="products.html?cat=dulces">
+            <img src="assets/cat-pastas.jpeg" alt="Dulces" width="48" height="48">
+            <span>Dulces</span>
+          </a>
+          <a class="category" href="products.html?cat=limpieza">
+            <img src="assets/logo-estelar.jpeg" alt="Limpieza" width="48" height="48">
+            <span>Limpieza</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-
+    <!-- Propósito -->
     <section id="proposito" class="section section--alt">
       <div class="container grid grid-2">
         <figure class="media card">
@@ -115,6 +115,7 @@
       </div>
     </section>
 
+    <!-- Contacto -->
     <section id="contacto" class="section">
       <div class="container grid grid-2">
         <form class="card form" onsubmit="event.preventDefault(); alert('¡Gracias! Te responderemos pronto.');">
@@ -140,11 +141,12 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="container footer__wrap">
       <div class="footer__brand">
-        <img src="assets/abregroup-hero.jpeg" alt="" width="28" height="28" class="brand__logo">
-        <span> </span>
+        <img src="assets/abregroup-hero.jpeg" alt="ABREGROUP" class="brand__logo">
+        <span>ABREGROUP</span>
       </div>
       <nav class="footnav">
         <a href="marcas.html">Marcas</a>
@@ -159,11 +161,3 @@
   <script src="script.js" defer></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
